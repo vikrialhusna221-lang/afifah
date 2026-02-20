@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday! 🎂</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gb-body: #a8c8e8;
+    --gb-body-dark: #6a9bbf;
+    --gb-body-darker: #4a7a9b;
+    --gb-screen-border: #3a5a7a;
+    --gb-screen-bg: #8bac6e;
+    --gb-screen-dark: #0f380f;
+    --gb-btn-red: #e05070;
+    --gb-btn-cross: #5a8ab0;
+    --gb-text: #1a1a2e;
+    --gb-light: #d4eeff;
+    --pixel: 2px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: linear-gradient(135deg, #1a2a4a 0%, #0d1b35 50%, #1a0a2e 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Press Start 2P', monospace;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Stars background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 10% 15%, #fff 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 40%, #fff 0%, transparent 100%),
+      radial-gradient(1px 1px at 50% 10%, #fff 0%, transparent 100%),
+      radial-gradient(1px 1px at 75% 30%, #fff 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 60%, #fff 0%, transparent 100%),
+      radial-gradient(1px 1px at 15% 70%, #fff 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 80%, #fff 0%, transparent 100%),
+      radial-gradient(1px 1px at 35% 90%, #fff 0%, transparent 100%),
+      radial-gradient(2px 2px at 80% 5%, #adf 0%, transparent 100%),
+      radial-gradient(2px 2px at 5% 50%, #adf 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Floating particles */
+  .particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .particle {
+    position: absolute;
+    font-size: 14px;
+    animation: floatUp linear infinite;
+    opacity: 0;
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-20px) rotate(360deg); opacity: 0; }
+  }
+
+  /* GAMEBOY DEVICE */
+  .gameboy {
+    position: relative;
+    z-index: 10;
+    width: 420px;
+    background: var(--gb-body);
+    border-radius: 12px 12px 60px 12px;
+    padding: 28px 28px 40px;
+    box-shadow:
+      6px 6px 0 var(--gb-body-dark),
+      12px 12px 0 var(--gb-body-darker),
+      0 30px 80px rgba(0,0,0,0.7),
+      inset 0 2px 4px rgba(255,255,255,0.4);
+    animation: gbFloat 3s ease-in-out infinite;
+  }
+  @keyframes gbFloat {
+    0%, 100% { transform: translateY(0px) rotate(-1deg); filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); }
+    50% { transform: translateY(-15px) rotate(1deg); filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6)); }
+  }
+
+  /* Top bar */
+  .gb-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .gb-power {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 6px;
+    color: var(--gb-body-darker);
+    letter-spacing: 1.5px;
+    font-weight: bold;
+  }
+  .power-led {
+    width: 8px;
+    height: 8px;
+    background: #ff4455;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff4455, inset 0 1px 2px rgba(255,255,255,0.3);
+    animation: blink 1.5s ease-in-out infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; box-shadow: 0 0 10px #ff4455, inset 0 1px 2px rgba(255,255,255,0.3); }
+    50% { opacity: 0.5; box-shadow: 0 0 4px #ff4455, inset 0 1px 2px rgba(255,255,255,0.3); }
+  }
+  .gb-brand {
+    font-size: 6px;
+    color: var(--gb-body-darker);
+    letter-spacing: 2px;
+    font-weight: bold;
+  }
+
+  /* Screen area */
+  .gb-screen-area {
+    background: var(--gb-body-dark);
+    border-radius: 8px 8px 40px 4px;
+    padding: 16px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 4px 10px rgba(0,0,0,0.5);
+    position: relative;
+  }
+  .gb-screen-label {
+    font-size: 5px;
+    color: #d4eeff;
+    text-align: center;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+    opacity: 0.9;
+    font-weight: bold;
+  }
+  .gb-screen {
+    background: var(--gb-screen-bg);
+    border-radius: 4px;
+    aspect-ratio: 10/9;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      inset 0 0 20px rgba(0,0,0,0.3),
+      0 0 0 2px var(--gb-screen-border);
+    cursor: pointer;
+  }
+
+  /* PAGES */
+  .page {
+    position: absolute;
+    inset: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    overflow: hidden;
+  }
+  .page.active { display: flex; }
+
+  /* HOME PAGE */
+  #page-home {
+    background: linear-gradient(180deg, #8bac6e 0%, #5a7a4a 100%);
+    gap: 6px;
+  }
+  .home-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 13px;
+    color: var(--gb-screen-dark);
+    text-align: center;
+    text-shadow: 2px 2px 0 rgba(255,255,255,0.4);
+    animation: textPulse 2s ease-in-out infinite;
+    line-height: 1.8;
+    font-weight: bold;
+  }
+  @keyframes textPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+  .home-cake {
+    font-size: 50px;
+    animation: cakeBounce 0.8s ease-in-out infinite alternate;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+  }
+  @keyframes cakeBounce {
+    from { transform: scale(1) rotate(-5deg); }
+    to { transform: scale(1.15) rotate(5deg); }
+  }
+  .home-subtitle {
+    font-size: 7px;
+    color: var(--gb-screen-dark);
+    opacity: 0.8;
+    text-align: center;
+    animation: blinkText 1s step-end infinite;
+  }
+  @keyframes blinkText {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  .home-nav {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 8px;
+  }
+  .nav-btn {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 5.5px;
+    color: var(--gb-screen-dark);
+    background: rgba(0,0,0,0.15);
+    border: 2px solid rgba(0,0,0,0.4);
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.1s;
+  }
+  .nav-btn:hover, .nav-btn.active-nav {
+    background: var(--gb-screen-dark);
+    color: var(--gb-screen-bg);
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  }
+
+  /* MESSAGE PAGE */
+  #page-message {
+    background: #8bac6e;
+    gap: 4px;
+    justify-content: flex-start;
+    padding-top: 8px;
+  }
+  .msg-header {
+    font-size: 8px;
+    color: var(--gb-screen-dark);
+    border-bottom: 2px solid var(--gb-screen-dark);
+    padding-bottom: 5px;
+    width: 100%;
+    text-align: center;
+  }
+  .msg-scroll {
+    overflow-y: auto;
+    flex: 1;
+    width: 100%;
+    scrollbar-width: none;
+  }
+  .msg-text {
+    font-family: 'VT323', monospace;
+    font-size: 14px;
+    color: var(--gb-screen-dark);
+    line-height: 1.7;
+    text-align: left;
+    width: 100%;
+    padding: 2px;
+    white-space: pre-line;
+  }
+  .msg-cursor {
+    display: inline-block;
+    width: 7px;
+    height: 12px;
+    background: var(--gb-screen-dark);
+    animation: blinkText 0.7s step-end infinite;
+    vertical-align: bottom;
+  }
+
+  /* GALLERY PAGE */
+  #page-gallery {
+    background: #8bac6e;
+    gap: 4px;
+    justify-content: flex-start;
+    padding: 6px;
+  }
+  .gal-header {
+    font-size: 8px;
+    color: var(--gb-screen-dark);
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+  .gal-frame {
+    flex: 1;
+    width: 100%;
+    background: rgba(0,0,0,0.15);
+    border: 1px solid rgba(0,0,0,0.3);
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .gal-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+  }
+  .gal-img.active { display: block; }
+  .gal-placeholder {
+    font-size: 38px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  }
+  .gal-placeholder-text {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 5px;
+    color: var(--gb-screen-dark);
+    text-align: center;
+    opacity: 0.8;
+    font-weight: bold;
+  }
+  .gal-counter {
+    font-size: 6px;
+    color: var(--gb-screen-dark);
+    opacity: 0.8;
+    font-weight: bold;
+  }
+  .gal-nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .gal-arrow {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 6px;
+    color: var(--gb-screen-dark);
+    background: rgba(0,0,0,0.15);
+    border: 2px solid rgba(0,0,0,0.4);
+    padding: 5px 8px;
+    cursor: pointer;
+    border-radius: 2px;
+  }
+  .gal-arrow:hover {
+    background: var(--gb-screen-dark);
+    color: var(--gb-screen-bg);
+  }
+
+  /* MUSIC PAGE */
+  #page-music {
+    background: #8bac6e;
+    gap: 6px;
+  }
+  .music-header {
+    font-size: 8px;
+    color: var(--gb-screen-dark);
+    text-align: center;
+    width: 100%;
+    border-bottom: 2px solid var(--gb-screen-dark);
+    padding-bottom: 4px;
+    font-weight: bold;
+  }
+  .music-display {
+    width: 100%;
+    background: rgba(0,0,0,0.15);
+    border: 2px solid rgba(0,0,0,0.4);
+    padding: 8px;
+    border-radius: 2px;
+    text-align: center;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+  }
+  .music-note {
+    font-size: 28px;
+    animation: noteSpin 1s linear infinite;
+    display: inline-block;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  }
+  .music-note.paused { animation-play-state: paused; }
+  @keyframes noteSpin {
+    from { transform: rotate(-10deg); }
+    to { transform: rotate(10deg); }
+  }
+  .music-title {
+    font-family: 'VT323', monospace;
+    font-size: 14px;
+    color: var(--gb-screen-dark);
+    margin-top: 4px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: bold;
+  }
+  .music-scroll-title {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+  }
+  .music-artist {
+    font-size: 6px;
+    color: var(--gb-screen-dark);
+    opacity: 0.8;
+    margin-top: 3px;
+    font-weight: bold;
+  }
+  .music-progress {
+    width: 100%;
+    height: 4px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 2px;
+    margin: 4px 0;
+    overflow: hidden;
+  }
+  .music-bar {
+    height: 100%;
+    background: var(--gb-screen-dark);
+    width: 0%;
+    border-radius: 2px;
+    transition: width 0.5s linear;
+  }
+  .music-time {
+    font-size: 6px;
+    color: var(--gb-screen-dark);
+    opacity: 0.8;
+    font-weight: bold;
+  }
+  .music-controls {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+  }
+  .music-btn {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 7px;
+    color: var(--gb-screen-dark);
+    background: rgba(0,0,0,0.15);
+    border: 2px solid rgba(0,0,0,0.4);
+    padding: 5px 8px;
+    cursor: pointer;
+    border-radius: 2px;
+  }
+  .music-btn:hover {
+    background: var(--gb-screen-dark);
+    color: var(--gb-screen-bg);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    transform: scale(1.05);
+  }
+  .music-playlist {
+    width: 100%;
+    overflow-y: auto;
+    max-height: 60px;
+    scrollbar-width: none;
+  }
+  .playlist-item {
+    font-family: 'VT323', monospace;
+    font-size: 12px;
+    color: var(--gb-screen-dark);
+    padding: 3px 6px;
+    cursor: pointer;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    opacity: 0.7;
+    transition: all 0.2s;
+  }
+  .playlist-item:hover, .playlist-item.playing {
+    background: rgba(0,0,0,0.2);
+    opacity: 1;
+    transform: translateX(2px);
+  }
+  .playlist-item.playing::before { content: '▶'; font-size: 8px; }
+  .playlist-item:not(.playing)::before { content: '○'; font-size: 8px; }
+
+  /* TETRIS PAGE */
+  #page-tetris {
+    background: #0f380f;
+    gap: 4px;
+    padding: 4px;
+  }
+  .tetris-header {
+    font-size: 7px;
+    color: #9bbc0f;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+  }
+  .tetris-area {
+    display: flex;
+    gap: 4px;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  #tetris-canvas {
+    border: 1px solid #3a5a0a;
+    image-rendering: pixelated;
+  }
+  .tetris-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .tetris-score-box {
+    background: rgba(0,0,0,0.3);
+    border: 2px solid #3a5a0a;
+    padding: 5px;
+    text-align: center;
+    border-radius: 2px;
+  }
+  .tetris-label {
+    font-size: 5px;
+    color: #9bbc0f;
+    opacity: 0.8;
+    font-weight: bold;
+  }
+  .tetris-value {
+    font-size: 8px;
+    color: #9bbc0f;
+    font-weight: bold;
+  }
+  .tetris-next-label {
+    font-size: 4px;
+    color: #9bbc0f;
+    opacity: 0.7;
+  }
+  #next-canvas {
+    border: 1px solid #3a5a0a;
+    image-rendering: pixelated;
+  }
+  .tetris-start-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,30,0,0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+  .tetris-start-text {
+    font-size: 8px;
+    color: #9bbc0f;
+    text-align: center;
+    line-height: 2.2;
+    animation: blinkText 1s step-end infinite;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+
+  /* Controls area */
+  .gb-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding: 0 4px;
+  }
+
+  /* D-pad */
+  .dpad {
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .dpad-h, .dpad-v {
+    position: absolute;
+    background: var(--gb-body-darker);
+    border-radius: 4px;
+    box-shadow: inset 0 2px 4px rgba(255,255,255,0.3), 3px 3px 0 rgba(0,0,0,0.3);
+  }
+  .dpad-h {
+    width: 100%;
+    height: 33%;
+    top: 33%;
+    left: 0;
+  }
+  .dpad-v {
+    width: 33%;
+    height: 100%;
+    top: 0;
+    left: 33%;
+  }
+  .dpad-center {
+    position: absolute;
+    width: 33%;
+    height: 33%;
+    top: 33%;
+    left: 33%;
+    background: var(--gb-body-darker);
+    z-index: 2;
+  }
+  .dpad-btn {
+    position: absolute;
+    cursor: pointer;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: rgba(255,255,255,0.7);
+    user-select: none;
+    transition: all 0.1s;
+  }
+  .dpad-btn:active { filter: brightness(0.75); transform: scale(0.95); }
+  .dpad-up { top: 2px; left: 50%; transform: translateX(-50%); width: 28px; height: 28px; }
+  .dpad-down { bottom: 2px; left: 50%; transform: translateX(-50%); width: 28px; height: 28px; }
+  .dpad-left { left: 2px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; }
+  .dpad-right { right: 2px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; }
+
+  /* Middle buttons */
+  .gb-mid-btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .meta-btns {
+    display: flex;
+    gap: 12px;
+  }
+  .meta-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+  }
+  .meta-btn-body {
+    width: 32px;
+    height: 10px;
+    background: var(--gb-body-darker);
+    border-radius: 12px;
+    box-shadow: 0 3px 0 rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.3);
+    transform: rotate(-15deg);
+    transition: all 0.1s;
+  }
+  .meta-btn:active .meta-btn-body { transform: rotate(-15deg) scale(0.93) translateY(2px); box-shadow: 0 1px 0 rgba(0,0,0,0.4); }
+  .meta-btn-label {
+    font-size: 5px;
+    color: var(--gb-body-darker);
+    letter-spacing: 1px;
+    font-weight: bold;
+  }
+  .gb-speaker {
+    display: flex;
+    gap: 3px;
+  }
+  .speaker-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--gb-body-dark);
+    border-radius: 50%;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.4), 0 1px 2px rgba(255,255,255,0.3);
+  }
+
+  /* AB Buttons */
+  .ab-btns {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    transform: rotate(-15deg);
+  }
+  .ab-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+  }
+  .ab-btn-circle {
+    width: 32px;
+    height: 32px;
+    background: var(--gb-btn-red);
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4), inset 0 2px 0 rgba(255,255,255,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.1s;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  .ab-btn:active .ab-btn-circle { transform: scale(0.9) translateY(3px); box-shadow: 0 2px 4px rgba(0,0,0,0.4); }
+  .ab-btn-label {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 7px;
+    color: var(--gb-body-dark);
+    font-weight: bold;
+  }
+
+  /* Bottom */
+  .gb-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding-top: 4px;
+  }
+  .gb-plug {
+    width: 30px;
+    height: 8px;
+    background: var(--gb-body-darker);
+    border-radius: 0 0 4px 4px;
+    margin-top: -4px;
+  }
+
+  /* Confetti animation */
+  .confetti-piece {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    top: -10px;
+    animation: confettiFall linear forwards;
+    z-index: 100;
+    pointer-events: none;
+  }
+  @keyframes confettiFall {
+    to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* Pixel decorations */
+  .pixel-corner {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--gb-body-dark);
+  }
+  .gb-badge {
+    position: absolute;
+    bottom: 12px;
+    right: 20px;
+    font-size: 5px;
+    color: var(--gb-body-darker);
+    letter-spacing: 1px;
+    font-family: 'Press Start 2P', monospace;
+  }
+
+  /* Logo Circle */
+  .gb-logo {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid var(--gb-body-dark);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 15;
+  }
+  .gb-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  /* Scanlines overlay on screen */
+  .gb-screen::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.05) 2px,
+      rgba(0,0,0,0.05) 4px
+    );
+    pointer-events: none;
+    z-index: 50;
+  }
+
+  /* Responsive */
+  @media (max-width: 380px) {
+    .gameboy { width: 300px; }
+  }
+
+  /* Animate-in */
+  .gameboy {
+    animation: gbFloat 3s ease-in-out infinite, gbAppear 0.6s ease-out backwards;
+  }
+  @keyframes gbAppear {
+    from { transform: scale(0.5) rotate(-10deg); opacity: 0; }
+    to { transform: scale(1) rotate(-1deg); opacity: 1; }
+  }
+
+  .edit-hint {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 5px;
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    z-index: 100;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="particles" id="particles"></div>
+
+<div class="gameboy">
+  <!-- Top bar -->
+  <div class="gb-top">
+    <div class="gb-power">
+      <div class="power-led"></div>
+      POWER
+    </div>
+    <div class="gb-brand">✦ BIRTHDAY·BOY ✦</div>
+  </div>
+
+  <!-- Screen -->
+  <div class="gb-screen-area">
+    <div class="gb-screen-label">DOT MATRIX WITH STEREO SOUND</div>
+    <div class="gb-screen" id="gb-screen">
+
+      <!-- HOME PAGE -->
+      <div class="page active" id="page-home">
+        <div class="home-cake">🎂</div>
+        <div class="home-title">Happy<br>Birthday!</div>
+        <div class="home-subtitle">▶ Press START ◀</div>
+        <div class="home-nav">
+          <div class="nav-btn" onclick="goPage('message')">MSG</div>
+          <div class="nav-btn" onclick="goPage('gallery')">FOTO</div>
+          <div class="nav-btn" onclick="goPage('music')">MUSIK</div>
+          <div class="nav-btn" onclick="goPage('tetris')">GAME</div>
+        </div>
+      </div>
+
+      <!-- MESSAGE PAGE -->
+      <div class="page" id="page-message">
+        <div class="msg-header">✉ PESAN ✉</div>
+        <div class="msg-scroll">
+          <div class="msg-text" id="msg-text"></div>
+        </div>
+      </div>
+
+      <!-- GALLERY PAGE -->
+      <div class="page" id="page-gallery">
+        <div class="gal-header">📷 GALLERY</div>
+        <div class="gal-frame" id="gal-frame">
+          <div class="gal-placeholder">
+            <span>🖼️</span>
+            <div class="gal-placeholder-text">Tambahkan foto<br>di kode HTML<br>bagian GALLERY</div>
+          </div>
+          <!-- Contoh cara menambah foto:
+          <img class="gal-img active" src="foto1.jpg" alt="Foto 1">
+          <img class="gal-img" src="foto2.jpg" alt="Foto 2">
+          -->
+        </div>
+        <div class="gal-counter" id="gal-counter">1 / 1</div>
+        <div class="gal-nav">
+          <div class="gal-arrow" onclick="galPrev()">◀ PREV</div>
+          <div class="gal-arrow" onclick="galNext()">NEXT ▶</div>
+        </div>
+      </div>
+
+      <!-- MUSIC PAGE -->
+      <div class="page" id="page-music">
+        <div class="music-header">🎵 MUSIK</div>
+        <div class="music-display">
+          <div class="music-note" id="music-note">♪</div>
+          <div class="music-title" id="music-title-display">-- Pilih Lagu --</div>
+          <div class="music-artist" id="music-artist">Tambahkan lagu di kode HTML</div>
+          <div class="music-progress"><div class="music-bar" id="music-bar"></div></div>
+          <div class="music-time" id="music-time">0:00 / 0:00</div>
+        </div>
+        <div class="music-controls">
+          <div class="music-btn" onclick="musicPrev()">⏮</div>
+          <div class="music-btn" id="play-btn" onclick="togglePlay()">▶</div>
+          <div class="music-btn" onclick="musicNext()">⏭</div>
+        </div>
+        <div class="music-playlist" id="music-playlist"></div>
+      </div>
+
+      <!-- TETRIS PAGE -->
+      <div class="page" id="page-tetris">
+        <div class="tetris-header">TETRIS</div>
+        <div class="tetris-area">
+          <canvas id="tetris-canvas" width="80" height="144"></canvas>
+          <div class="tetris-info">
+            <div class="tetris-score-box">
+              <div class="tetris-label">SCORE</div>
+              <div class="tetris-value" id="score">0</div>
+            </div>
+            <div class="tetris-score-box">
+              <div class="tetris-label">LEVEL</div>
+              <div class="tetris-value" id="level">1</div>
+            </div>
+            <div class="tetris-score-box">
+              <div class="tetris-label">LINES</div>
+              <div class="tetris-value" id="lines">0</div>
+            </div>
+            <div class="tetris-label">NEXT</div>
+            <canvas id="next-canvas" width="36" height="36"></canvas>
+          </div>
+        </div>
+        <div class="tetris-start-overlay" id="tetris-overlay" onclick="startTetris()">
+          <div class="tetris-start-text">TETRIS<br><br>TEKAN A<br>UNTUK<br>MULAI</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="gb-controls">
+    <!-- D-pad -->
+    <div class="dpad">
+      <div class="dpad-h"></div>
+      <div class="dpad-v"></div>
+      <div class="dpad-center"></div>
+      <div class="dpad-btn dpad-up" onclick="dpadAction('up')">▲</div>
+      <div class="dpad-btn dpad-down" onclick="dpadAction('down')">▼</div>
+      <div class="dpad-btn dpad-left" onclick="dpadAction('left')">◀</div>
+      <div class="dpad-btn dpad-right" onclick="dpadAction('right')">▶</div>
+    </div>
+
+    <!-- Middle -->
+    <div class="gb-mid-btns">
+      <div class="meta-btns">
+        <div class="meta-btn" onclick="goPage('home')">
+          <div class="meta-btn-body"></div>
+          <div class="meta-btn-label">SELECT</div>
+        </div>
+        <div class="meta-btn" onclick="startAction()">
+          <div class="meta-btn-body"></div>
+          <div class="meta-btn-label">START</div>
+        </div>
+      </div>
+      <div class="gb-speaker">
+        <div class="speaker-dot"></div>
+        <div class="speaker-dot"></div>
+        <div class="speaker-dot"></div>
+        <div class="speaker-dot"></div>
+        <div class="speaker-dot"></div>
+      </div>
+    </div>
+
+    <!-- AB Buttons -->
+    <div class="ab-btns">
+      <div class="ab-btn" onclick="btnB()">
+        <div class="ab-btn-circle"></div>
+        <div class="ab-btn-label">B</div>
+      </div>
+      <div class="ab-btn" onclick="btnA()">
+        <div class="ab-btn-circle"></div>
+        <div class="ab-btn-label">A</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gb-logo">
+    <img src="https://raw.githubusercontent.com/alvikri1231-collab/afifah-zahra/main/53_20251214_104522_0000%20(1).png" alt="Logo">
+  </div>
+
+  <div class="gb-badge">BATTERY ▪▪▪</div>
+</div>
+
+<div class="edit-hint">★ Edit nama & pesan di bagian &lt;script&gt; bagian KONFIGURASI ★</div>
+
+<audio id="audio-player"></audio>
+
+<script>
+// ═══════════════════════════════════════════
+//  KONFIGURASI - Edit bagian ini sesuai keinginan
+// ═══════════════════════════════════════════
+
+const CONFIG = {
+  // Ganti dengan nama orang yang berulang tahun
+  name: "Afifah",
+
+  // Pesan ulang tahun - gunakan \n untuk baris baru
+  message: `Heyy, Selamat Ulang Tahun! 🎂
+
+Semoga di hari istimewa ini kamu dipenuhi kebahagiaan, tawa
+Semoga semua impian dan harapanmu terwujud satu per satu. Kamu layak mendapatkan yang terbaik!
+
+Tetaplah jadi diri sendiri yang luar biasa ya. Happy Birthday! 🎉✨`,
+
+  // Daftar lagu - isi dengan URL file musik (.mp3, dll)
+  // Format: { title: "Judul Lagu", artist: "Nama Artis", src: "URL_FILE_MUSIK" }
+  playlist: [
+    { title: "Otsukare Summer", artist: "Halcali", src: "https://raw.githubusercontent.com/alvikri1231-collab/afifah-zahra/main/Halcali%20-%20Otsukare%20Summer.mp3" },
+  ],
+
+  // Foto gallery - isi dengan URL foto
+  // Format: "URL_FOTO"
+  photos: [
+    "https://raw.githubusercontent.com/alvikri1231-collab/afifah-zahra/main/WhatsApp%20Image%202026-02-20%20at%2010.18.14.jpeg",
+    "https://raw.githubusercontent.com/alvikri1231-collab/afifah-zahra/main/IMG_20251021_150219_940%401381996359.jpg",
+  ],
+};
+
+// ═══════════════════════════════════════════
+//  KODE UTAMA - Tidak perlu diedit
+// ═══════════════════════════════════════════
+
+// Update title dengan nama
+document.title = `Happy Birthday, ${CONFIG.name}! 🎂`;
+
+// Floating particles
+const emojis = ['🎂', '🎉', '🎈', '✨', '💙', '⭐', '🎁', '🎊'];
+const particlesEl = document.getElementById('particles');
+for (let i = 0; i < 20; i++) {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  p.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+  p.style.left = Math.random() * 100 + '%';
+  p.style.animationDuration = (8 + Math.random() * 12) + 's';
+  p.style.animationDelay = (Math.random() * 10) + 's';
+  p.style.fontSize = (10 + Math.random() * 14) + 'px';
+  particlesEl.appendChild(p);
+}
+
+// Page navigation
+let currentPage = 'home';
+function goPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  currentPage = page;
+  if (page === 'message') typeMessage();
+  if (page === 'tetris') initTetrisCanvas();
+}
+
+function startAction() {
+  if (currentPage === 'home') {
+    launchConfetti();
+    goPage('message');
+  } else if (currentPage === 'tetris') {
+    startTetris();
+  }
+}
+
+function btnA() {
+  if (currentPage === 'home') { launchConfetti(); goPage('message'); }
+  else if (currentPage === 'tetris') { startTetris(); rotatePiece(); }
+  else if (currentPage === 'music') togglePlay();
+}
+function btnB() {
+  if (currentPage !== 'home') goPage('home');
+}
+
+function dpadAction(dir) {
+  if (currentPage === 'gallery') {
+    if (dir === 'left') galPrev();
+    if (dir === 'right') galNext();
+  } else if (currentPage === 'music') {
+    if (dir === 'left') musicPrev();
+    if (dir === 'right') musicNext();
+  } else if (currentPage === 'tetris') {
+    if (dir === 'left') moveTetris(-1);
+    if (dir === 'right') moveTetris(1);
+    if (dir === 'down') dropTetris();
+    if (dir === 'up') rotatePiece();
+  }
+}
+
+// Keyboard support
+document.addEventListener('keydown', e => {
+  if (currentPage === 'tetris') {
+    if (e.key === 'ArrowLeft') moveTetris(-1);
+    if (e.key === 'ArrowRight') moveTetris(1);
+    if (e.key === 'ArrowDown') dropTetris();
+    if (e.key === 'ArrowUp') rotatePiece();
+    if (e.key === ' ') hardDrop();
+  }
+  if (e.key === 'Enter') startAction();
+  if (e.key === 'Escape') goPage('home');
+  if (e.key === 'ArrowLeft' && currentPage === 'gallery') galPrev();
+  if (e.key === 'ArrowRight' && currentPage === 'gallery') galNext();
+});
+
+// Confetti
+function launchConfetti() {
+  const colors = ['#a8d8f0', '#70b8e8', '#4a9acc', '#ff8fb0', '#ffe08a', '#a8f0c8'];
+  for (let i = 0; i < 60; i++) {
+    setTimeout(() => {
+      const c = document.createElement('div');
+      c.className = 'confetti-piece';
+      c.style.left = Math.random() * 100 + 'vw';
+      c.style.background = colors[Math.floor(Math.random() * colors.length)];
+      c.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+      c.style.animationDuration = (1.5 + Math.random() * 2) + 's';
+      document.body.appendChild(c);
+      setTimeout(() => c.remove(), 3500);
+    }, i * 40);
+  }
+}
+
+// Message typewriter
+let typing = false;
+function typeMessage() {
+  const el = document.getElementById('msg-text');
+  const fullText = `${CONFIG.name},\n\n${CONFIG.message}`;
+  if (typing || el.dataset.done) return;
+  typing = true;
+  el.textContent = '';
+  el.dataset.done = '';
+  const cursor = document.createElement('span');
+  cursor.className = 'msg-cursor';
+  el.appendChild(cursor);
+  let i = 0;
+  const interval = setInterval(() => {
+    if (i < fullText.length) {
+      el.insertBefore(document.createTextNode(fullText[i]), cursor);
+      i++;
+    } else {
+      clearInterval(interval);
+      cursor.remove();
+      el.dataset.done = 'true';
+      typing = false;
+    }
+  }, 30);
+}
+
+// Gallery
+let galIndex = 0;
+const photos = CONFIG.photos;
+function renderGallery() {
+  const frame = document.getElementById('gal-frame');
+  const counter = document.getElementById('gal-counter');
+  if (photos.length === 0) {
+    counter.textContent = '- / -';
+    return;
+  }
+  // Clear old imgs
+  frame.querySelectorAll('.gal-img').forEach(i => i.remove());
+  photos.forEach((src, idx) => {
+    const img = document.createElement('img');
+    img.className = 'gal-img' + (idx === galIndex ? ' active' : '');
+    img.src = src;
+    img.alt = 'Foto ' + (idx + 1);
+    frame.appendChild(img);
+  });
+  // Hide placeholder
+  const placeholder = frame.querySelector('.gal-placeholder');
+  if (placeholder) placeholder.style.display = photos.length > 0 ? 'none' : '';
+  counter.textContent = `${galIndex + 1} / ${photos.length}`;
+}
+function galPrev() {
+  if (photos.length === 0) return;
+  galIndex = (galIndex - 1 + photos.length) % photos.length;
+  renderGallery();
+}
+function galNext() {
+  if (photos.length === 0) return;
+  galIndex = (galIndex + 1) % photos.length;
+  renderGallery();
+}
+renderGallery();
+
+// Music Player
+const audio = document.getElementById('audio-player');
+let currentTrack = 0;
+let isPlaying = false;
+const playlist = CONFIG.playlist;
+
+function renderPlaylist() {
+  const container = document.getElementById('music-playlist');
+  container.innerHTML = '';
+  if (playlist.length === 0) {
+    container.innerHTML = '<div class="playlist-item" style="opacity:0.5;cursor:default">○ Belum ada lagu</div>';
+    return;
+  }
+  playlist.forEach((track, idx) => {
+    const item = document.createElement('div');
+    item.className = 'playlist-item' + (idx === currentTrack ? ' playing' : '');
+    item.textContent = track.title;
+    item.onclick = () => loadTrack(idx);
+    container.appendChild(item);
+  });
+}
+
+function loadTrack(idx) {
+  currentTrack = idx;
+  if (playlist.length === 0) return;
+  const track = playlist[idx];
+  audio.src = track.src;
+  document.getElementById('music-title-display').textContent = track.title;
+  document.getElementById('music-artist').textContent = track.artist;
+  renderPlaylist();
+  if (isPlaying) audio.play();
+}
+
+function togglePlay() {
+  if (playlist.length === 0) return;
+  if (audio.src === '' || !audio.src) loadTrack(0);
+  if (isPlaying) {
+    audio.pause();
+    isPlaying = false;
+    document.getElementById('play-btn').textContent = '▶';
+    document.getElementById('music-note').classList.add('paused');
+  } else {
+    audio.play();
+    isPlaying = true;
+    document.getElementById('play-btn').textContent = '⏸';
+    document.getElementById('music-note').classList.remove('paused');
+  }
+}
+
+function musicNext() {
+  if (playlist.length === 0) return;
+  loadTrack((currentTrack + 1) % playlist.length);
+  if (isPlaying) audio.play();
+}
+function musicPrev() {
+  if (playlist.length === 0) return;
+  loadTrack((currentTrack - 1 + playlist.length) % playlist.length);
+  if (isPlaying) audio.play();
+}
+
+audio.addEventListener('timeupdate', () => {
+  if (!audio.duration) return;
+  const pct = (audio.currentTime / audio.duration) * 100;
+  document.getElementById('music-bar').style.width = pct + '%';
+  const fmt = t => `${Math.floor(t/60)}:${String(Math.floor(t%60)).padStart(2,'0')}`;
+  document.getElementById('music-time').textContent = `${fmt(audio.currentTime)} / ${fmt(audio.duration)}`;
+});
+audio.addEventListener('ended', musicNext);
+
+renderPlaylist();
+
+// ═══════════════════════════════════
+//  TETRIS
+// ═══════════════════════════════════
+
+const COLS = 8, ROWS = 14;
+const CELL = 10;
+const COLORS = ['#9bbc0f','#8bac0f','#306230','#0f380f','#6bac4f','#4a7a2f','#1a5a0f'];
+
+const SHAPES = [
+  [[1,1,1,1]],
+  [[1,1],[1,1]],
+  [[0,1,1],[1,1,0]],
+  [[1,1,0],[0,1,1]],
+  [[1,0,0],[1,1,1]],
+  [[0,0,1],[1,1,1]],
+  [[0,1,0],[1,1,1]],
+];
+
+let board, piece, nextPiece, score, level, lines, gameLoop, tetrisRunning;
+
+function emptyBoard() { return Array.from({length:ROWS}, ()=>Array(COLS).fill(0)); }
+
+function randomPiece() {
+  const shape = SHAPES[Math.floor(Math.random()*SHAPES.length)];
+  const color = COLORS[Math.floor(Math.random()*COLORS.length)];
+  return { shape, color, x: Math.floor(COLS/2) - Math.floor(shape[0].length/2), y: 0 };
+}
+
+function initTetrisCanvas() {
+  const canvas = document.getElementById('tetris-canvas');
+  canvas.width = COLS * CELL;
+  canvas.height = ROWS * CELL;
+}
+
+function startTetris() {
+  document.getElementById('tetris-overlay').style.display = 'none';
+  board = emptyBoard();
+  score = 0; level = 1; lines = 0;
+  piece = randomPiece();
+  nextPiece = randomPiece();
+  tetrisRunning = true;
+  updateTetrisUI();
+  drawTetris();
+  clearInterval(gameLoop);
+  gameLoop = setInterval(tetrisTick, 600);
+}
+
+function tetrisTick() {
+  if (!tetrisRunning) return;
+  piece.y++;
+  if (collision()) {
+    piece.y--;
+    placePiece();
+    clearLines();
+    piece = nextPiece;
+    nextPiece = randomPiece();
+    drawNext();
+    if (collision()) { endGame(); return; }
+  }
+  drawTetris();
+}
+
+function collision() {
+  return piece.shape.some((row, r) =>
+    row.some((v, c) => {
+      if (!v) return false;
+      const nx = piece.x + c, ny = piece.y + r;
+      return nx < 0 || nx >= COLS || ny >= ROWS || (ny >= 0 && board[ny][nx]);
+    })
+  );
+}
+
+function placePiece() {
+  piece.shape.forEach((row, r) => row.forEach((v, c) => {
+    if (v && piece.y + r >= 0) board[piece.y+r][piece.x+c] = piece.color;
+  }));
+}
+
+function clearLines() {
+  let cleared = 0;
+  for (let r = ROWS-1; r >= 0; r--) {
+    if (board[r].every(v => v)) { board.splice(r,1); board.unshift(Array(COLS).fill(0)); cleared++; r++; }
+  }
+  if (cleared) {
+    lines += cleared;
+    score += [0,100,300,500,800][cleared] * level;
+    level = Math.floor(lines/10)+1;
+    clearInterval(gameLoop);
+    gameLoop = setInterval(tetrisTick, Math.max(100, 600 - (level-1)*50));
+    updateTetrisUI();
+  }
+}
+
+function moveTetris(dir) {
+  if (!tetrisRunning) return;
+  piece.x += dir;
+  if (collision()) piece.x -= dir;
+  drawTetris();
+}
+
+function dropTetris() {
+  if (!tetrisRunning) return;
+  piece.y++;
+  if (collision()) { piece.y--; tetrisTick(); }
+  drawTetris();
+}
+
+function hardDrop() {
+  if (!tetrisRunning) return;
+  while (!collision()) piece.y++;
+  piece.y--;
+  tetrisTick();
+}
+
+function rotatePiece() {
+  if (!tetrisRunning) return;
+  const orig = piece.shape;
+  piece.shape = piece.shape[0].map((_,c)=>piece.shape.map(r=>r[c]).reverse());
+  if (collision()) piece.shape = orig;
+  drawTetris();
+}
+
+function drawTetris() {
+  const canvas = document.getElementById('tetris-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#0f380f';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Grid
+  ctx.strokeStyle = 'rgba(155,188,15,0.1)';
+  ctx.lineWidth = 0.5;
+  for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
+    ctx.strokeRect(c*CELL, r*CELL, CELL, CELL);
+  }
+
+  // Board
+  board.forEach((row,r) => row.forEach((v,c) => {
+    if (v) { ctx.fillStyle = v; ctx.fillRect(c*CELL+1,r*CELL+1,CELL-2,CELL-2); }
+  }));
+
+  // Ghost piece
+  let ghost = {...piece, shape: piece.shape.map(r=>[...r])};
+  while (true) {
+    ghost.y++;
+    const col = piece.shape.some((row,r) => row.some((v,c) => {
+      if(!v) return false;
+      const nx=ghost.x+c, ny=ghost.y+r;
+      return nx<0||nx>=COLS||ny>=ROWS||(ny>=0&&board[ny][nx]);
+    }));
+    if (col) { ghost.y--; break; }
+  }
+  piece.shape.forEach((row,r) => row.forEach((v,c) => {
+    if (v) { ctx.fillStyle='rgba(155,188,15,0.2)'; ctx.fillRect((ghost.x+c)*CELL+1,(ghost.y+r)*CELL+1,CELL-2,CELL-2); }
+  }));
+
+  // Piece
+  piece.shape.forEach((row,r) => row.forEach((v,c) => {
+    if (v) { ctx.fillStyle=piece.color; ctx.fillRect((piece.x+c)*CELL+1,(piece.y+r)*CELL+1,CELL-2,CELL-2); }
+  }));
+}
+
+function drawNext() {
+  const canvas = document.getElementById('next-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const s = nextPiece.shape;
+  const cw = 36 / s[0].length;
+  const ch = 36 / s.length;
+  ctx.fillStyle = '#0f380f';
+  ctx.fillRect(0,0,36,36);
+  s.forEach((row,r) => row.forEach((v,c) => {
+    if(v) { ctx.fillStyle=nextPiece.color; ctx.fillRect(c*cw+1,r*ch+1,cw-2,ch-2); }
+  }));
+}
+
+function updateTetrisUI() {
+  document.getElementById('score').textContent = score;
+  document.getElementById('level').textContent = level;
+  document.getElementById('lines').textContent = lines;
+}
+
+function endGame() {
+  tetrisRunning = false;
+  clearInterval(gameLoop);
+  const overlay = document.getElementById('tetris-overlay');
+  overlay.style.display = 'flex';
+  overlay.innerHTML = `<div class="tetris-start-text">GAME OVER<br><br>SCORE:<br>${score}<br><br>TEKAN A<br>UNTUK ULANG</div>`;
+  overlay.onclick = startTetris;
+}
+
+// Update home title with name
+document.querySelector('.home-title').innerHTML = `Happy<br>Birthday<br>${CONFIG.name}!`;
+</script>
+</body>
+</html>
