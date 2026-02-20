@@ -32,8 +32,6 @@
     overflow-x: hidden;
     position: relative;
   }
-
-  /* Stars background */
   body::before {
     content: '';
     position: fixed;
@@ -53,7 +51,6 @@
     z-index: 0;
   }
 
-  /* Floating particles */
   .particles {
     position: fixed;
     inset: 0;
@@ -73,8 +70,6 @@
     90% { opacity: 1; }
     100% { transform: translateY(-20px) rotate(360deg); opacity: 0; }
   }
-
-  /* GAMEBOY DEVICE */
   .gameboy {
     position: relative;
     z-index: 10;
@@ -93,8 +88,6 @@
     0%, 100% { transform: translateY(0px) rotate(-1deg); filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); }
     50% { transform: translateY(-15px) rotate(1deg); filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6)); }
   }
-
-  /* Top bar */
   .gb-top {
     display: flex;
     justify-content: space-between;
@@ -128,8 +121,6 @@
     letter-spacing: 2px;
     font-weight: bold;
   }
-
-  /* Screen area */
   .gb-screen-area {
     background: var(--gb-body-dark);
     border-radius: 8px 8px 40px 4px;
@@ -158,8 +149,6 @@
       0 0 0 2px var(--gb-screen-border);
     cursor: pointer;
   }
-
-  /* PAGES */
   .page {
     position: absolute;
     inset: 0;
@@ -171,8 +160,6 @@
     overflow: hidden;
   }
   .page.active { display: flex; }
-
-  /* HOME PAGE */
   #page-home {
     background: linear-gradient(180deg, #8bac6e 0%, #5a7a4a 100%);
     gap: 6px;
@@ -275,8 +262,6 @@
     animation: blinkText 0.7s step-end infinite;
     vertical-align: bottom;
   }
-
-  /* GALLERY PAGE */
   #page-gallery {
     background: #8bac6e;
     gap: 4px;
@@ -352,8 +337,6 @@
     background: var(--gb-screen-dark);
     color: var(--gb-screen-bg);
   }
-
-  /* MUSIC PAGE */
   #page-music {
     background: #8bac6e;
     gap: 6px;
@@ -477,8 +460,6 @@
   }
   .playlist-item.playing::before { content: '▶'; font-size: 8px; }
   .playlist-item:not(.playing)::before { content: '○'; font-size: 8px; }
-
-  /* TETRIS PAGE */
   #page-tetris {
     background: #0f380f;
     gap: 4px;
@@ -554,7 +535,6 @@
     text-shadow: 0 2px 4px rgba(0,0,0,0.5);
   }
 
-  /* Controls area */
   .gb-controls {
     display: flex;
     align-items: center;
@@ -562,8 +542,6 @@
     margin-bottom: 12px;
     padding: 0 4px;
   }
-
-  /* D-pad */
   .dpad {
     position: relative;
     width: 80px;
@@ -613,8 +591,6 @@
   .dpad-down { bottom: 2px; left: 50%; transform: translateX(-50%); width: 28px; height: 28px; }
   .dpad-left { left: 2px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; }
   .dpad-right { right: 2px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; }
-
-  /* Middle buttons */
   .gb-mid-btns {
     display: flex;
     flex-direction: column;
@@ -659,8 +635,6 @@
     border-radius: 50%;
     box-shadow: inset 0 1px 2px rgba(0,0,0,0.4), 0 1px 2px rgba(255,255,255,0.3);
   }
-
-  /* AB Buttons */
   .ab-btns {
     display: flex;
     gap: 10px;
@@ -695,8 +669,6 @@
     color: var(--gb-body-dark);
     font-weight: bold;
   }
-
-  /* Bottom */
   .gb-bottom {
     display: flex;
     justify-content: center;
@@ -711,8 +683,6 @@
     border-radius: 0 0 4px 4px;
     margin-top: -4px;
   }
-
-  /* Confetti animation */
   .confetti-piece {
     position: fixed;
     width: 8px;
@@ -725,8 +695,6 @@
   @keyframes confettiFall {
     to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
   }
-
-  /* Pixel decorations */
   .pixel-corner {
     position: absolute;
     width: 6px;
@@ -742,8 +710,6 @@
     letter-spacing: 1px;
     font-family: 'Press Start 2P', monospace;
   }
-
-  /* Logo Circle */
   .gb-logo {
     position: absolute;
     top: 16px;
@@ -766,8 +732,6 @@
     object-fit: cover;
     border-radius: 50%;
   }
-
-  /* Scanlines overlay on screen */
   .gb-screen::after {
     content: '';
     position: absolute;
@@ -782,13 +746,10 @@
     pointer-events: none;
     z-index: 50;
   }
-
-  /* Responsive */
   @media (max-width: 380px) {
     .gameboy { width: 300px; }
   }
 
-  /* Animate-in */
   .gameboy {
     animation: gbFloat 3s ease-in-out infinite, gbAppear 0.6s ease-out backwards;
   }
@@ -816,7 +777,7 @@
 <div class="particles" id="particles"></div>
 
 <div class="gameboy">
-  <!-- Top bar -->
+
   <div class="gb-top">
     <div class="gb-power">
       <div class="power-led"></div>
@@ -825,12 +786,12 @@
     <div class="gb-brand">✦ BIRTHDAY·BOY ✦</div>
   </div>
 
-  <!-- Screen -->
+
   <div class="gb-screen-area">
     <div class="gb-screen-label">DOT MATRIX WITH STEREO SOUND</div>
     <div class="gb-screen" id="gb-screen">
 
-      <!-- HOME PAGE -->
+
       <div class="page active" id="page-home">
         <div class="home-cake">🎂</div>
         <div class="home-title">Happy<br>Birthday!</div>
@@ -843,7 +804,6 @@
         </div>
       </div>
 
-      <!-- MESSAGE PAGE -->
       <div class="page" id="page-message">
         <div class="msg-header">✉ PESAN ✉</div>
         <div class="msg-scroll">
@@ -851,7 +811,7 @@
         </div>
       </div>
 
-      <!-- GALLERY PAGE -->
+    
       <div class="page" id="page-gallery">
         <div class="gal-header">📷 GALLERY</div>
         <div class="gal-frame" id="gal-frame">
@@ -859,10 +819,7 @@
             <span>🖼️</span>
             <div class="gal-placeholder-text">Tambahkan foto<br>di kode HTML<br>bagian GALLERY</div>
           </div>
-          <!-- Contoh cara menambah foto:
-          <img class="gal-img active" src="foto1.jpg" alt="Foto 1">
-          <img class="gal-img" src="foto2.jpg" alt="Foto 2">
-          -->
+     
         </div>
         <div class="gal-counter" id="gal-counter">1 / 1</div>
         <div class="gal-nav">
@@ -871,7 +828,6 @@
         </div>
       </div>
 
-      <!-- MUSIC PAGE -->
       <div class="page" id="page-music">
         <div class="music-header">🎵 MUSIK</div>
         <div class="music-display">
@@ -889,7 +845,6 @@
         <div class="music-playlist" id="music-playlist"></div>
       </div>
 
-      <!-- TETRIS PAGE -->
       <div class="page" id="page-tetris">
         <div class="tetris-header">TETRIS</div>
         <div class="tetris-area">
@@ -919,9 +874,8 @@
     </div>
   </div>
 
-  <!-- Controls -->
+
   <div class="gb-controls">
-    <!-- D-pad -->
     <div class="dpad">
       <div class="dpad-h"></div>
       <div class="dpad-v"></div>
@@ -931,8 +885,6 @@
       <div class="dpad-btn dpad-left" onclick="dpadAction('left')">◀</div>
       <div class="dpad-btn dpad-right" onclick="dpadAction('right')">▶</div>
     </div>
-
-    <!-- Middle -->
     <div class="gb-mid-btns">
       <div class="meta-btns">
         <div class="meta-btn" onclick="goPage('home')">
@@ -953,7 +905,6 @@
       </div>
     </div>
 
-    <!-- AB Buttons -->
     <div class="ab-btns">
       <div class="ab-btn" onclick="btnB()">
         <div class="ab-btn-circle"></div>
@@ -972,50 +923,27 @@
 
   <div class="gb-badge">BATTERY ▪▪▪</div>
 </div>
-
-<div class="edit-hint">★ Edit nama & pesan di bagian &lt;script&gt; bagian KONFIGURASI ★</div>
-
 <audio id="audio-player"></audio>
 
 <script>
-// ═══════════════════════════════════════════
-//  KONFIGURASI - Edit bagian ini sesuai keinginan
-// ═══════════════════════════════════════════
 
 const CONFIG = {
-  // Ganti dengan nama orang yang berulang tahun
   name: "Afifah",
-
-  // Pesan ulang tahun - gunakan \n untuk baris baru
   message: `Heyy, Selamat Ulang Tahun! 🎂
 
 Semoga di hari istimewa ini kamu dipenuhi kebahagiaan, tawa
 Semoga semua impian dan harapanmu terwujud satu per satu. Kamu layak mendapatkan yang terbaik!
 
 Tetaplah jadi diri sendiri yang luar biasa ya. Happy Birthday! 🎉✨`,
-
-  // Daftar lagu - isi dengan URL file musik (.mp3, dll)
-  // Format: { title: "Judul Lagu", artist: "Nama Artis", src: "URL_FILE_MUSIK" }
   playlist: [
     { title: "Otsukare Summer", artist: "Halcali", src: "https://raw.githubusercontent.com/alvikri1231-collab/afifah-zahra/main/Halcali%20-%20Otsukare%20Summer.mp3" },
   ],
-
-  // Foto gallery - isi dengan URL foto
-  // Format: "URL_FOTO"
   photos: [
     "https://raw.githubusercontent.com/alvikri1231-collab/afifah-zahra/main/WhatsApp%20Image%202026-02-20%20at%2010.18.14.jpeg",
     "https://raw.githubusercontent.com/alvikri1231-collab/afifah-zahra/main/IMG_20251021_150219_940%401381996359.jpg",
   ],
 };
-
-// ═══════════════════════════════════════════
-//  KODE UTAMA - Tidak perlu diedit
-// ═══════════════════════════════════════════
-
-// Update title dengan nama
 document.title = `Happy Birthday, ${CONFIG.name}! 🎂`;
-
-// Floating particles
 const emojis = ['🎂', '🎉', '🎈', '✨', '💙', '⭐', '🎁', '🎊'];
 const particlesEl = document.getElementById('particles');
 for (let i = 0; i < 20; i++) {
@@ -1029,7 +957,6 @@ for (let i = 0; i < 20; i++) {
   particlesEl.appendChild(p);
 }
 
-// Page navigation
 let currentPage = 'home';
 function goPage(page) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -1072,7 +999,6 @@ function dpadAction(dir) {
   }
 }
 
-// Keyboard support
 document.addEventListener('keydown', e => {
   if (currentPage === 'tetris') {
     if (e.key === 'ArrowLeft') moveTetris(-1);
@@ -1087,7 +1013,6 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight' && currentPage === 'gallery') galNext();
 });
 
-// Confetti
 function launchConfetti() {
   const colors = ['#a8d8f0', '#70b8e8', '#4a9acc', '#ff8fb0', '#ffe08a', '#a8f0c8'];
   for (let i = 0; i < 60; i++) {
@@ -1104,7 +1029,6 @@ function launchConfetti() {
   }
 }
 
-// Message typewriter
 let typing = false;
 function typeMessage() {
   const el = document.getElementById('msg-text');
@@ -1130,7 +1054,7 @@ function typeMessage() {
   }, 30);
 }
 
-// Gallery
+
 let galIndex = 0;
 const photos = CONFIG.photos;
 function renderGallery() {
@@ -1140,7 +1064,7 @@ function renderGallery() {
     counter.textContent = '- / -';
     return;
   }
-  // Clear old imgs
+
   frame.querySelectorAll('.gal-img').forEach(i => i.remove());
   photos.forEach((src, idx) => {
     const img = document.createElement('img');
@@ -1149,7 +1073,6 @@ function renderGallery() {
     img.alt = 'Foto ' + (idx + 1);
     frame.appendChild(img);
   });
-  // Hide placeholder
   const placeholder = frame.querySelector('.gal-placeholder');
   if (placeholder) placeholder.style.display = photos.length > 0 ? 'none' : '';
   counter.textContent = `${galIndex + 1} / ${photos.length}`;
@@ -1166,7 +1089,6 @@ function galNext() {
 }
 renderGallery();
 
-// Music Player
 const audio = document.getElementById('audio-player');
 let currentTrack = 0;
 let isPlaying = false;
@@ -1236,11 +1158,6 @@ audio.addEventListener('timeupdate', () => {
 audio.addEventListener('ended', musicNext);
 
 renderPlaylist();
-
-// ═══════════════════════════════════
-//  TETRIS
-// ═══════════════════════════════════
-
 const COLS = 8, ROWS = 14;
 const CELL = 10;
 const COLORS = ['#9bbc0f','#8bac0f','#306230','#0f380f','#6bac4f','#4a7a2f','#1a5a0f'];
@@ -1428,7 +1345,6 @@ function endGame() {
   overlay.onclick = startTetris;
 }
 
-// Update home title with name
 document.querySelector('.home-title').innerHTML = `Happy<br>Birthday<br>${CONFIG.name}!`;
 </script>
 </body>
